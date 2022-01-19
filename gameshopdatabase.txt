@@ -1,0 +1,100 @@
+git@github.com:rowemeister83/gamshopschema.gitCREATE DATABASE Game_store3;
+USE Game_store3;
+
+CREATE TABLE customers(
+  customer_id int NOT NULL AUTO_INCREMENT,
+  name varchar(70) NOT NULL,
+  email varchar(70) NOT NULL,
+  house_number int NOT NULL,
+  postcode varchar(8) NOT NULL,
+  PRIMARY KEY (customer_id));
+  
+  CREATE TABLE products(
+  product_id int NOT NULL AUTO_INCREMENT,
+  title varchar(60) NOT NULL,
+  price decimal(7,2) NOT NULL,
+  stock int NOT NULL,
+  PRIMARY KEY (product_id));
+  
+  CREATE TABLE orders(
+  order_id int NOT NULL AUTO_INCREMENT,
+  customer_id int NOT NULL,
+  product_id int NOT NULL,
+  date_ordered date NOT NULL,
+  PRIMARY KEY (order_id),
+  FOREIGN KEY (customer_id) REFERENCES customers(customer_id),
+  FOREIGN KEY (product_id) REFERENCES products(product_id));
+  
+  CREATE TABLE orderline(
+  orderline_id int NOT NULL AUTO_INCREMENT,
+  product_id int NOT NULL,
+  order_id int NOT NULL,
+  PRIMARY KEY (orderline_id),
+  FOREIGN KEY (product_id) REFERENCES products(product_id),
+  FOREIGN KEY (order_id) REFERENCES orders(order_id));
+  
+INSERT INTO customers(name, email, house_number, postcode) VALUES('John', 'john@john.com', 4, 'SK6 6PY');
+
+INSERT INTO customers(name, email, house_number, postcode) VALUES('Alan', 'alan@alan.com', 10, 'm30 8hh');
+
+INSERT INTO customers(name, email, house_number, postcode) VALUES('Alex', 'alex@alex.com', 3, 'LS13 5PY');
+
+INSERT INTO customers(name, email, house_number, postcode) VALUES('Ryan', 'ryan@ryan.com', 5, 'sk6 6py');
+
+INSERT INTO customers(name, email, house_number, postcode) VALUES('Ryan', 'ryan@ryan2.com', 6, 'SW16 1PR');
+
+DELETE FROM customers WHERE name='Alex';
+INSERT INTO customers(name, email, house_number, postcode) VALUES('Alex', 'alex@alex.com', 3, 'LS13 5PY');
+
+select * from customers;
+
+Insert into products(title, price, stock) VALUES('miles morales', 44.99, 78);
+Insert into products(title, price, stock) VALUES('Forza', 55.00, 100);
+Insert into products(title, price, stock) VALUES('Horizon', 49.99, 17);
+Insert into products(title, price, stock) VALUES('Inside', 9.99, 7);
+Insert into products(title, price, stock) VALUES('RDR2', 19.99, 203);
+
+Delete from Products where stock=7;
+Insert into products(title, price, stock) VALUES('Inside', 9.99, 7);
+
+INSERT INTO orders(customer_id, product_id, date_ordered) VALUES(1, 1, '2020-01-10');
+INSERT INTO orders(customer_id, product_id, date_ordered) VALUES(2, 3, '2020-01-11');
+INSERT INTO orders(customer_id, product_id, date_ordered) VALUES(3, 3, '2020-01-10');
+INSERT INTO orders(customer_id, product_id, date_ordered) VALUES(4, 1, '2020-01-14');
+INSERT INTO orders(customer_id, product_id, date_ordered) VALUES(5, 2, '2020-01-20');
+
+
+INSERT INTO orderline(order_id, product_id) values (1,1);
+INSERT INTO orderline(order_id, product_id) values (2,3);
+INSERT INTO orderline(order_id, product_id) values (3,3);
+INSERT INTO orderline(order_id, product_id) values (4,1);
+INSERT INTO orderline(order_id, product_id) values (5,2);
+
+DESCRIBE orderline;
+select * FROM orderline;
+
+SELECT title, price FROM products WHERE stock <99;
+SELECT price, stock FROM products WHERE stock <59.99;
+SELECT name, postcode FROM customers WHERE house_number >5;
+SELECT name, postcode FROM customers WHERE house_number >5;
+SELECT customer_id FROM orders WHERE date_ordered >'2020-01-10';
+SELECT customer_id FROM orders WHERE date_ordered >'2020-01-10';
+SELECT title, stock FROM products WHERE price='19.99';
+SELECT product_id FROM orders WHERE customer_id=1;
+SELECT AVG(price) FROM products;
+SELECT SUM(PRICE) from products; 
+SELECT product_id, title, price FROM products WHERE stock=203;
+SELECT count(product_id) FROM orderline;
+SELECT COUNT(order_id) FROM orderline WHERE product_id=3;
+
+UPDATE customers
+SET name='Magnus'
+WHERE name='John';
+
+SET SQL_SAFE_UPDATES=0; 
+
+select * FROM Customers;
+
+UPDATE customers
+SET name='Linus_Torvalds', postcode='SK6 6PY'
+WHERE customer_id ='5';
