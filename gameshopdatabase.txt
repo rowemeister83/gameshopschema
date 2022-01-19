@@ -78,7 +78,7 @@ SELECT price, stock FROM products WHERE stock <59.99;
 SELECT name, postcode FROM customers WHERE house_number >5;
 SELECT name, postcode FROM customers WHERE house_number >5;
 SELECT customer_id FROM orders WHERE date_ordered >'2020-01-10';
-SELECT customer_id FROM orders WHERE date_ordered >'2020-01-10';
+SELECT customer_id FROM orders WHERE date_ordered >'2020-01-11';
 SELECT title, stock FROM products WHERE price='19.99';
 SELECT product_id FROM orders WHERE customer_id=1;
 SELECT AVG(price) FROM products;
