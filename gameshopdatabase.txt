@@ -1,4 +1,4 @@
-git@github.com:rowemeister83/gamshopschema.gitCREATE DATABASE Game_store3;
+CREATE DATABASE Game_store3;
 USE Game_store3;
 
 CREATE TABLE customers(
