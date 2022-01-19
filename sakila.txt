@@ -1,0 +1,83 @@
+Hi Pawel -my attempt at the sakila, up until the point you sent the answers (Which I will read fully on thursday, before 9am class start-thank you)
+
+
+USE sakila;
+Describe actor;
+
+#1
+SELECT * FROM actor;
+
+#2
+SELECT last_name FROM actor WHERE first_name='John';
+
+#3
+SELECT * FROM ACTOR WHERE last_name='Neeson';
+
+#4
+SELECT * FROM actor WHERE actor_id%10=0;
+
+Describe actor;
+Select * from ACTOR;
+
+#5
+SELECT descriptION from FILM WHERE film_id=100;
+
+#6
+SELECT TITLE FROM FILM WHERE RATING='R';
+
+#7
+SELECT TITLE FROM FILM WHERE RATING!='R';
+
+#8
+Select TITLE, length FROM FILM ORDER BY length ASC LIMIT 10;
+
+
+
+#9
+SELECT title,length from FILM WHERE length=(SELECT max(length)FROM film);
+
+#10
+SELECT TITLE,special_features FROM film WHERE special_features LIKE '%DELETED SCENES%';
+
+
+#11
+
+SELECT lAST_NAME, COUNT(last_name) FROM actor GROUP BY last_name HAVING count(last_name)=1 ORDER BY last_name  DESC;
+
+#12
+DESCRIBE FILM_ACTOR;
+DESCRIBE ACTOR;
+SELECT f.actor_id, a.first_name, a.last_name, COUNT(f.actor_id) FROM  film_actor F JOIN ACTOR a ON F.actor_id=a.actor_id
+GROUP BY F.actor_id;
+
+SELECT * FROM ACTOR;
+
+ORDER BY COUNT(f.actor_id) desc LIMIT 1;
+
+#13
+
+
+#14
+
+#15
+SELECT AVG(length) from film;
+
+#16
+DESCRIBE CATEGORY;
+SELECT * FROM CATEGORY;
+SELECT category, avg(length) FROM film_list GROUP BY category;
+
+#17
+DESCRIBE FILM;
+SELECT film_id,TITLE FROM film  WHERE description LIKE '%robot%';
+
+#18
+SELECT COUNT(release_year) FROM FILM WHERE release_year=2010;
+
+#19
+
+SELECT TITLE FROM film_list WHERE category='Horror';
+
+SELECT * FROM FILM_LIST;
+DESCRIBE FILM_LIST;
+
